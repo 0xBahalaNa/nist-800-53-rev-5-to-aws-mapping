@@ -1,0 +1,113 @@
+{
+  "component-definition": {
+    "uuid": "a1b2c3d4-5678-9abc-def0-123456789abc",
+    "metadata": {
+      "title": "NIST 800-53 Rev 5 to AWS Service Mapping",
+      "last-modified": "2026-03-12T00:00:00Z",
+      "version": "0.1.0",
+      "oscal-version": "1.1.2"
+    },
+    "components": [
+      {
+        "uuid": "b2c3d4e5-6789-abcd-ef01-23456789abcd",
+        "type": "service",
+        "title": "AWS CloudTrail",
+        "description": "AWS CloudTrail records API calls and account activity across AWS infrastructure, providing event history for governance, compliance, and operational auditing.",
+        "control-implementations": [
+          {
+            "uuid": "c3d4e5f6-789a-bcde-f012-3456789abcde",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "description": "NIST 800-53 Rev 5 controls implemented by AWS CloudTrail",
+            "implemented-requirements": [
+              {
+                "uuid": "d4e5f6a7-89ab-cdef-0123-456789abcdef",
+                "control-id": "au-2",
+                "description": "CloudTrail enables audit event logging by capturing API calls across AWS services. Organizations configure trail settings to define which management and data events are logged, satisfying the requirement to identify events the system is capable of auditing.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              },
+              {
+                "uuid": "e5f6a7b8-9abc-def0-1234-56789abcdef0",
+                "control-id": "au-3",
+                "description": "CloudTrail log entries contain event name, timestamp, source IP, user identity (ARN), request parameters, and response elements. This satisfies the requirement for audit records containing what type of event occurred, when, where, the source, the outcome, and the identity of associated individuals or subjects.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              },
+              {
+                "uuid": "f6a7b8c9-abcd-ef01-2345-6789abcdef01",
+                "control-id": "au-12",
+                "description": "CloudTrail provides system-wide audit record generation capability. When enabled at the organization level via AWS Organizations, it generates audit records for all member accounts, satisfying the requirement to provide audit record generation capability at all system components.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "a7b8c9d0-bcde-f012-3456-789abcdef012",
+        "type": "service",
+        "title": "AWS IAM",
+        "description": "AWS Identity and Access Management (IAM) controls authentication and authorization for AWS resources, enabling centralized management of users, groups, roles, and policies.",
+        "control-implementations": [
+          {
+            "uuid": "b8c9d0e1-cdef-0123-4567-89abcdef0123",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "description": "NIST 800-53 Rev 5 controls implemented by AWS IAM",
+            "implemented-requirements": [
+              {
+                "uuid": "c9d0e1f2-def0-1234-5678-9abcdef01234",
+                "control-id": "ac-2",
+                "description": "IAM provides account management capabilities including creating, enabling, modifying, disabling, and removing accounts. IAM policies enforce conditions on account usage, and integration with AWS Organizations enables centralized account management across multiple AWS accounts.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              },
+              {
+                "uuid": "d0e1f2a3-ef01-2345-6789-abcdef012345",
+                "control-id": "ac-6",
+                "description": "IAM enforces least privilege through identity-based policies, resource-based policies, permissions boundaries, and service control policies (SCPs). IAM Access Analyzer identifies resources shared with external entities and validates policies against least-privilege best practices.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              },
+              {
+                "uuid": "e1f2a3b4-f012-3456-789a-bcdef0123456",
+                "control-id": "ia-2",
+                "description": "IAM authenticates users through passwords, access keys, and MFA devices. IAM Identity Center provides centralized SSO with support for SAML 2.0 and OIDC federation, enabling multi-factor authentication for all organizational users accessing AWS resources.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  },
+                  {
+                    "name": "cjis-delta",
+                    "value": "CJIS v6.0 requires AAL2 multi-factor authentication for all users accessing CJI. This exceeds the FedRAMP High baseline by mandating phishing-resistant authenticators (hardware tokens or push-based MFA) and prohibiting SMS-based OTP as a second factor for CJI systems."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
