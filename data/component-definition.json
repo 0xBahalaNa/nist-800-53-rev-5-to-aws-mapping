@@ -3,8 +3,8 @@
     "uuid": "a1b2c3d4-5678-9abc-def0-123456789abc",
     "metadata": {
       "title": "NIST 800-53 Rev 5 to AWS Service Mapping",
-      "last-modified": "2026-03-12T00:00:00Z",
-      "version": "0.1.0",
+      "last-modified": "2026-03-16T00:00:00Z",
+      "version": "0.2.0",
       "oscal-version": "1.1.2"
     },
     "components": [
@@ -75,6 +75,21 @@
                   {
                     "name": "fedramp-high",
                     "value": "true"
+                  },
+                  {
+                    "name": "cjis-delta",
+                    "value": "CJIS v6.0 requires accounts with access to CJI be reviewed at minimum quarterly. This exceeds the FedRAMP High baseline review frequency and requires documented evidence of each review cycle with explicit reauthorization or removal of access."
+                  }
+                ]
+              },
+              {
+                "uuid": "d0e1f2a3-ef01-2345-6789-abcdef012340",
+                "control-id": "ac-3",
+                "description": "IAM enforces approved authorizations for logical access through a default-deny policy evaluation chain. Every API call is evaluated against identity-based policies, resource-based policies, permissions boundaries, and service control policies (SCPs). Access is denied unless an explicit allow exists and no explicit deny overrides it.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
                   }
                 ]
               },
@@ -101,6 +116,173 @@
                   {
                     "name": "cjis-delta",
                     "value": "CJIS v6.0 requires AAL2 multi-factor authentication for all users accessing CJI. This exceeds the FedRAMP High baseline by mandating phishing-resistant authenticators (hardware tokens or push-based MFA) and prohibiting SMS-based OTP as a second factor for CJI systems."
+                  }
+                ]
+              },
+              {
+                "uuid": "e1f2a3b4-f012-3456-789a-bcdef0123457",
+                "control-id": "ia-5",
+                "description": "IAM enforces authenticator management through configurable password policies (minimum length, complexity, rotation period, reuse prevention) and access key rotation tracking. IAM credential reports provide visibility into password and access key age across all users, supporting the requirement to manage system authenticator lifecycle.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "f2a3b4c5-0123-4567-89ab-cdef01234567",
+        "type": "service",
+        "title": "AWS Organizations",
+        "description": "AWS Organizations provides centralized governance and management of multiple AWS accounts, enabling policy-based controls through service control policies (SCPs) and consolidated account lifecycle management.",
+        "control-implementations": [
+          {
+            "uuid": "a3b4c5d6-1234-5678-9abc-def012345678",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "description": "NIST 800-53 Rev 5 controls implemented by AWS Organizations",
+            "implemented-requirements": [
+              {
+                "uuid": "b4c5d6e7-2345-6789-abcd-ef0123456789",
+                "control-id": "ac-2",
+                "description": "AWS Organizations enables centralized account management across multiple AWS accounts through organizational units (OUs) and SCPs. Accounts can be created, moved between OUs, suspended, and closed centrally, satisfying the requirement for organization-wide account management and enforcement of account usage conditions.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "c5d6e7f8-3456-789a-bcde-f01234567890",
+        "type": "service",
+        "title": "AWS IAM Identity Center",
+        "description": "AWS IAM Identity Center (successor to AWS SSO) provides centralized single sign-on access management across multiple AWS accounts and business applications, supporting SAML 2.0 and OIDC federation with external identity providers.",
+        "control-implementations": [
+          {
+            "uuid": "d6e7f8a9-4567-89ab-cdef-012345678901",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "description": "NIST 800-53 Rev 5 controls implemented by AWS IAM Identity Center",
+            "implemented-requirements": [
+              {
+                "uuid": "e7f8a9b0-5678-9abc-def0-123456789012",
+                "control-id": "ac-17",
+                "description": "IAM Identity Center controls remote access to AWS resources by authenticating users through a centralized portal with MFA enforcement before granting session credentials. Permission sets define what authenticated remote users can access, and session duration limits control how long remote access remains valid.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              },
+              {
+                "uuid": "f8a9b0c1-6789-abcd-ef01-234567890123",
+                "control-id": "ia-2",
+                "description": "IAM Identity Center provides centralized authentication with built-in MFA support including TOTP, hardware security keys (FIDO2), and push notification authenticators. It federates with external SAML 2.0 and OIDC identity providers, enabling organizations to extend their existing identity infrastructure to AWS access.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  },
+                  {
+                    "name": "cjis-delta",
+                    "value": "CJIS v6.0 requires AAL2 multi-factor authentication for all users accessing CJI. This exceeds the FedRAMP High baseline by mandating phishing-resistant authenticators (hardware tokens or push-based MFA) and prohibiting SMS-based OTP as a second factor for CJI systems."
+                  }
+                ]
+              },
+              {
+                "uuid": "a9b0c1d2-789a-bcde-f012-345678901234",
+                "control-id": "ia-8",
+                "description": "IAM Identity Center supports federation with external identity providers via SAML 2.0 and OIDC, enabling identification and authentication of non-organizational users from trusted partner organizations. Attribute-based access control (ABAC) can enforce authorization decisions based on identity attributes asserted by the external IdP.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "b0c1d2e3-89ab-cdef-0123-456789012345",
+        "type": "service",
+        "title": "AWS Client VPN",
+        "description": "AWS Client VPN provides managed, certificate-based VPN access to AWS resources and on-premises networks, enabling secure remote connectivity with integration to Active Directory and SAML-based identity providers for authentication.",
+        "control-implementations": [
+          {
+            "uuid": "c1d2e3f4-9abc-def0-1234-567890123456",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "description": "NIST 800-53 Rev 5 controls implemented by AWS Client VPN",
+            "implemented-requirements": [
+              {
+                "uuid": "d2e3f4a5-abcd-ef01-2345-678901234567",
+                "control-id": "ac-17",
+                "description": "AWS Client VPN establishes encrypted TLS tunnels for remote access to VPC resources. It enforces authentication through mutual TLS certificates, Active Directory credentials, or SAML-based federation. Authorization rules control which network CIDR ranges authenticated users can reach, and connection logging provides audit trails of all remote access sessions.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "e3f4a5b6-bcde-f012-3456-789012345678",
+        "type": "service",
+        "title": "AWS Secrets Manager",
+        "description": "AWS Secrets Manager stores, rotates, and retrieves database credentials, API keys, and other secrets throughout their lifecycle, with automatic rotation support and fine-grained IAM-based access control.",
+        "control-implementations": [
+          {
+            "uuid": "f4a5b6c7-cdef-0123-4567-890123456789",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "description": "NIST 800-53 Rev 5 controls implemented by AWS Secrets Manager",
+            "implemented-requirements": [
+              {
+                "uuid": "a5b6c7d8-def0-1234-5678-901234567890",
+                "control-id": "ia-5",
+                "description": "Secrets Manager manages authenticator lifecycle by storing credentials encrypted with KMS, enforcing automatic rotation on configurable schedules, and providing versioned secret history. Lambda-based rotation functions update credentials in both Secrets Manager and the target service atomically, satisfying the requirement to manage system authenticator content changes.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "b6c7d8e9-ef01-2345-6789-012345678901",
+        "type": "service",
+        "title": "Amazon Cognito",
+        "description": "Amazon Cognito provides identity management for external-facing applications, handling user sign-up, sign-in, and access control for users who exist outside the organization's internal identity infrastructure.",
+        "control-implementations": [
+          {
+            "uuid": "c7d8e9f0-f012-3456-789a-123456789012",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "description": "NIST 800-53 Rev 5 controls implemented by Amazon Cognito",
+            "implemented-requirements": [
+              {
+                "uuid": "d8e9f0a1-0123-4567-89ab-234567890123",
+                "control-id": "ia-8",
+                "description": "Cognito uniquely identifies and authenticates non-organizational users through user pools with configurable sign-up and sign-in flows. It supports federation with external identity providers (social, SAML, OIDC), adaptive authentication with risk-based challenges, and MFA enforcement, satisfying the requirement to identify and authenticate non-organizational users.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
                   }
                 ]
               }
