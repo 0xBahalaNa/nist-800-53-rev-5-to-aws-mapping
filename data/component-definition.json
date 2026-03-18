@@ -338,7 +338,7 @@
                   },
                   {
                     "name": "cjis-delta",
-                    "value": "CJIS v6.0 requires CJI access audit logs be retained for a minimum of one year and reviewed for anomalies. Organizations must demonstrate a documented review process for logs containing CJI access events, exceeding the FedRAMP High baseline review frequency."
+                    "value": "CJIS v6.0 Section 5.4 requires audit logs capturing CJI access be retained for a minimum of one year (365 days), reviewed at minimum weekly, and monitored using automated tools to flag suspicious activity. Organizations must assign personnel to review logs and demonstrate a documented review process, exceeding the FedRAMP High baseline review frequency."
                   }
                 ]
               }
