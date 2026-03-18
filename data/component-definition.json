@@ -3,8 +3,8 @@
     "uuid": "a1b2c3d4-5678-9abc-def0-123456789abc",
     "metadata": {
       "title": "NIST 800-53 Rev 5 to AWS Service Mapping",
-      "last-modified": "2026-03-16T00:00:00Z",
-      "version": "0.2.0",
+      "last-modified": "2026-03-17T00:00:00Z",
+      "version": "0.3.0",
       "oscal-version": "1.1.2"
     },
     "components": [
@@ -44,7 +44,7 @@
               {
                 "uuid": "f6a7b8c9-abcd-ef01-2345-6789abcdef01",
                 "control-id": "au-12",
-                "description": "CloudTrail provides system-wide audit record generation capability. When enabled at the organization level via AWS Organizations, it generates audit records for all member accounts, satisfying the requirement to provide audit record generation capability at all system components.",
+                "description": "CloudTrail provides system-wide audit record generation capability. When configured as an organization trail via AWS Organizations, it generates audit records for all member accounts across all AWS regions, capturing both management events and data events. FedRAMP High requires multi-region coverage — a single-region trail does not satisfy this control.",
                 "props": [
                   {
                     "name": "fedramp-high",
@@ -279,6 +279,140 @@
                 "uuid": "d8e9f0a1-0123-4567-89ab-234567890123",
                 "control-id": "ia-8",
                 "description": "Cognito uniquely identifies and authenticates non-organizational users through user pools with configurable sign-up and sign-in flows. It supports federation with external identity providers (social, SAML, OIDC), adaptive authentication with risk-based challenges, and MFA enforcement, satisfying the requirement to identify and authenticate non-organizational users.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "01a2b3c4-d5e6-7890-abcd-ef0123456701",
+        "type": "service",
+        "title": "Amazon VPC Flow Logs",
+        "description": "Amazon VPC Flow Logs capture IP traffic flow data for network interfaces in a VPC, providing visibility into network-level activity for security monitoring and troubleshooting.",
+        "control-implementations": [
+          {
+            "uuid": "02a2b3c4-d5e6-7890-abcd-ef0123456702",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "description": "NIST 800-53 Rev 5 controls implemented by Amazon VPC Flow Logs",
+            "implemented-requirements": [
+              {
+                "uuid": "03a2b3c4-d5e6-7890-abcd-ef0123456703",
+                "control-id": "au-2",
+                "description": "VPC Flow Logs capture network-level events that CloudTrail does not — accepted and rejected traffic at the ENI, subnet, or VPC level. This supplements CloudTrail's API-layer audit logging with network-layer event logging, satisfying the requirement to identify events the system is capable of auditing across both application and network tiers.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "04a2b3c4-d5e6-7890-abcd-ef0123456704",
+        "type": "service",
+        "title": "Amazon CloudWatch Logs Insights",
+        "description": "Amazon CloudWatch Logs Insights provides an interactive query engine for searching, filtering, and analyzing log data stored in CloudWatch Logs groups, enabling operational and security analysis of CloudTrail, VPC Flow Logs, and application logs.",
+        "control-implementations": [
+          {
+            "uuid": "05a2b3c4-d5e6-7890-abcd-ef0123456705",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "description": "NIST 800-53 Rev 5 controls implemented by Amazon CloudWatch Logs Insights",
+            "implemented-requirements": [
+              {
+                "uuid": "06a2b3c4-d5e6-7890-abcd-ef0123456706",
+                "control-id": "au-6",
+                "description": "CloudWatch Logs Insights provides the query and analysis capability needed to review audit records. Analysts can write structured queries against CloudTrail logs and VPC Flow Logs to identify unauthorized access attempts, privilege escalation patterns, and anomalous activity, satisfying the requirement to review and analyze system audit records for indications of inappropriate or unusual activity.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  },
+                  {
+                    "name": "cjis-delta",
+                    "value": "CJIS v6.0 Section 5.4 requires audit logs capturing CJI access be retained for a minimum of one year (365 days), reviewed at minimum weekly, and monitored using automated tools to flag suspicious activity. Organizations must assign personnel to review logs and demonstrate a documented review process, exceeding the FedRAMP High baseline review frequency."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "07a2b3c4-d5e6-7890-abcd-ef0123456707",
+        "type": "service",
+        "title": "Amazon Athena",
+        "description": "Amazon Athena is a serverless interactive query service that analyzes data in Amazon S3 using standard SQL, commonly used to query CloudTrail logs archived in S3 for long-term audit analysis and forensic investigations.",
+        "control-implementations": [
+          {
+            "uuid": "08a2b3c4-d5e6-7890-abcd-ef0123456708",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "description": "NIST 800-53 Rev 5 controls implemented by Amazon Athena",
+            "implemented-requirements": [
+              {
+                "uuid": "09a2b3c4-d5e6-7890-abcd-ef0123456709",
+                "control-id": "au-6",
+                "description": "Athena enables SQL-based analysis of CloudTrail logs stored in S3, supporting audit record review over historical data beyond CloudWatch's default retention window. This is particularly valuable for long-term trend analysis and incident forensics, satisfying the requirement to review and analyze audit records for indications of inappropriate or unusual activity.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "10a2b3c4-d5e6-7890-abcd-ef0123456710",
+        "type": "service",
+        "title": "Amazon S3",
+        "description": "Amazon Simple Storage Service (S3) provides object storage with configurable access controls, encryption, versioning, and immutability features used to protect audit logs and compliance evidence from unauthorized modification or deletion.",
+        "control-implementations": [
+          {
+            "uuid": "11a2b3c4-d5e6-7890-abcd-ef0123456711",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "description": "NIST 800-53 Rev 5 controls implemented by Amazon S3",
+            "implemented-requirements": [
+              {
+                "uuid": "12a2b3c4-d5e6-7890-abcd-ef0123456712",
+                "control-id": "au-9",
+                "description": "S3 protects audit information from unauthorized modification and deletion through multiple mechanisms: S3 Object Lock (WORM compliance mode) prevents log objects from being deleted or overwritten for a defined retention period, bucket policies with explicit deny statements block delete operations even from privileged users, and server-side encryption with KMS-managed keys protects audit records at rest.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "13a2b3c4-d5e6-7890-abcd-ef0123456713",
+        "type": "service",
+        "title": "AWS Security Hub",
+        "description": "AWS Security Hub aggregates security findings from multiple AWS services (GuardDuty, Inspector, Macie, Config, IAM Access Analyzer) and third-party tools into a centralized dashboard, providing automated compliance checks against security standards.",
+        "control-implementations": [
+          {
+            "uuid": "14a2b3c4-d5e6-7890-abcd-ef0123456714",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "description": "NIST 800-53 Rev 5 controls implemented by AWS Security Hub",
+            "implemented-requirements": [
+              {
+                "uuid": "15a2b3c4-d5e6-7890-abcd-ef0123456715",
+                "control-id": "au-6.1",
+                "description": "Security Hub provides automated audit record review and analysis by continuously evaluating findings from CloudTrail, Config, and GuardDuty against security standards (CIS Benchmarks, NIST 800-53, PCI DSS). Automated findings surface misconfigurations and anomalies without requiring manual log review, satisfying the AU-6(1) enhancement for automated integration of audit review, analysis, and reporting. Required at FedRAMP High baseline.",
                 "props": [
                   {
                     "name": "fedramp-high",
