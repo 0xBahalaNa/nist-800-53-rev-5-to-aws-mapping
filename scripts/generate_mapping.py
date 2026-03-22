@@ -144,6 +144,28 @@ def write_markdown(mappings, output_path, fedramp_only=False):
                     f"| {cjis if cjis else 'N/A'} "
                     f"|\n"
                 )
+
+            # CJIS v6.0 Delta Requirements section — only controls where CJIS
+            # exceeds the FedRAMP High baseline. Filtered using a list
+            # comprehension that checks for non-empty cjis_delta strings
+            # (PCC3e Ch 4 — an empty string is falsy in Python, so
+            # `if m["cjis_delta"]` filters out both "" and missing values).
+            cjis_deltas = [m for m in mappings if m["cjis_delta"]]
+
+            if cjis_deltas:
+                f.write("\n## CJIS v6.0 Delta Requirements\n\n")
+                f.write("Controls where CJIS v6.0 exceeds the FedRAMP High baseline.\n\n")
+                f.write("| Control ID | AWS Service | CJIS Additional Requirement |\n")
+                f.write("|------------|-------------|-----------------------------|\n")
+
+                for mapping in cjis_deltas:
+                    cjis = mapping["cjis_delta"].replace("|", "\\|")
+                    f.write(
+                        f"| {mapping['control_id']} "
+                        f"| {mapping['service']} "
+                        f"| {cjis} "
+                        f"|\n"
+                    )
     except OSError as e:
         print(f"Error: Could not write to {output_path}: {e}", file=sys.stderr)
         sys.exit(1)
