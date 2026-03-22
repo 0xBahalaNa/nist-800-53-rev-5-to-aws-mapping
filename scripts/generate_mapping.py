@@ -31,6 +31,11 @@ def parse_args():
         required=True,
         help="Path for the generated markdown file.",
     )
+    parser.add_argument(
+        "--fedramp-only",
+        action="store_true",
+        help="Only include controls with fedramp-high: true in the output.",
+    )
     return parser.parse_args()
 
 
@@ -109,15 +114,19 @@ def extract_mappings(component_definition):
     return mappings
 
 
-def write_markdown(mappings, output_path):
+def write_markdown(mappings, output_path, fedramp_only=False):
     """Write the extracted mappings to a markdown file as a table.
 
+    When fedramp_only is True, the document title reflects the filtered scope.
     Uses a with statement for safe file handling — the file is closed
     automatically even if an error occurs during writing (PCC3e Ch 10).
     """
     try:
         with open(output_path, "w") as f:
-            f.write("# NIST 800-53 Rev 5 to AWS Service Mapping\n\n")
+            if fedramp_only:
+                f.write("# NIST 800-53 Rev 5 to AWS Service Mapping — FedRAMP High Baseline\n\n")
+            else:
+                f.write("# NIST 800-53 Rev 5 to AWS Service Mapping\n\n")
             f.write("| Control ID | AWS Service | Description | FedRAMP High | CJIS Delta |\n")
             f.write("|------------|-------------|-------------|:------------:|------------|\n")
 
@@ -146,7 +155,14 @@ def main():
     args = parse_args()
     data = load_component_definition(args.input)
     mappings = extract_mappings(data)
-    write_markdown(mappings, args.output)
+
+    # Filter to FedRAMP High controls when --fedramp-only is passed.
+    # List comprehension filters the mappings list by checking the fedramp_high
+    # value in each dict (PCC3e Ch 4 — list comprehensions for filtering).
+    if args.fedramp_only:
+        mappings = [m for m in mappings if m["fedramp_high"] == "true"]
+
+    write_markdown(mappings, args.output, fedramp_only=args.fedramp_only)
 
 
 if __name__ == "__main__":
