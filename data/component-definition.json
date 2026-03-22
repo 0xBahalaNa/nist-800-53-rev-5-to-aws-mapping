@@ -3,8 +3,8 @@
     "uuid": "a1b2c3d4-5678-9abc-def0-123456789abc",
     "metadata": {
       "title": "NIST 800-53 Rev 5 to AWS Service Mapping",
-      "last-modified": "2026-03-21T00:00:00Z",
-      "version": "0.5.0",
+      "last-modified": "2026-03-22T00:00:00Z",
+      "version": "0.6.0",
       "oscal-version": "1.1.2"
     },
     "components": [
@@ -445,6 +445,28 @@
                     "value": "true"
                   }
                 ]
+              },
+              {
+                "uuid": "53a2b3c4-d5e6-7890-abcd-ef0123456753",
+                "control-id": "si-4",
+                "description": "Security Hub aggregates and correlates monitoring data from GuardDuty, Config, Inspector, Macie, and third-party tools into a unified findings format (AWS Security Finding Format). It provides cross-service visibility into attacks, misconfigurations, and policy violations across all accounts and regions, satisfying the requirement to analyze detected events and anomalies as part of system monitoring.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              },
+              {
+                "uuid": "54a2b3c4-d5e6-7890-abcd-ef0123456754",
+                "control-id": "ir-5",
+                "description": "Security Hub tracks and documents security incidents through its findings workflow. Each finding includes severity, resource details, remediation guidance, and workflow state (NEW, NOTIFIED, SUPPRESSED, RESOLVED). Findings persist as a searchable record of incidents across the organization, satisfying the requirement to track and document incidents.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
               }
             ]
           }
@@ -719,6 +741,17 @@
                     "value": "true"
                   }
                 ]
+              },
+              {
+                "uuid": "51a2b3c4-d5e6-7890-abcd-ef0123456751",
+                "control-id": "si-7",
+                "description": "AWS Config Rules detect unauthorized changes to resource configurations by continuously evaluating resource state against approved baselines. When a resource's configuration deviates from the approved state — such as an AMI swap on an EC2 instance, a Lambda function code hash change, or an unauthorized software package appearing in SSM Inventory — Config marks the resource NON_COMPLIANT and can trigger automated alerts, satisfying the requirement to employ integrity verification tools to detect unauthorized changes.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
               }
             ]
           }
@@ -739,6 +772,173 @@
                 "uuid": "50a2b3c4-d5e6-7890-abcd-ef0123456750",
                 "control-id": "cm-8",
                 "description": "SSM Inventory collects OS-level metadata from managed instances including installed applications, OS version, network configuration, Windows updates, and running services. This extends AWS Config's cloud-layer inventory with instance-layer detail that Config cannot see, satisfying the requirement for a component inventory at the level of granularity deemed necessary for tracking and reporting.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              },
+              {
+                "uuid": "52a2b3c4-d5e6-7890-abcd-ef0123456752",
+                "control-id": "si-2",
+                "description": "SSM Patch Manager automates flaw remediation by defining patch baselines (approved, auto-approved, and rejected patches), scanning managed instances for missing patches, and deploying updates during scheduled maintenance windows. Patch compliance reports identify which instances are missing critical or security-relevant updates, satisfying the requirement to identify, report, and correct system flaws and install security-relevant updates within organization-defined time periods.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "55a2b3c4-d5e6-7890-abcd-ef0123456755",
+        "type": "service",
+        "title": "Amazon GuardDuty",
+        "description": "Amazon GuardDuty is a threat detection service that continuously monitors AWS accounts and workloads by analyzing CloudTrail management and data events, VPC Flow Logs, and DNS query logs using machine learning, anomaly detection, and integrated threat intelligence.",
+        "control-implementations": [
+          {
+            "uuid": "56a2b3c4-d5e6-7890-abcd-ef0123456756",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "description": "NIST 800-53 Rev 5 controls implemented by Amazon GuardDuty",
+            "implemented-requirements": [
+              {
+                "uuid": "57a2b3c4-d5e6-7890-abcd-ef0123456757",
+                "control-id": "si-3",
+                "description": "GuardDuty detects malicious code indicators by analyzing CloudTrail events, VPC Flow Logs, and DNS query logs for patterns associated with malware activity — including communication with known command-and-control servers, crypto-mining traffic, and data exfiltration patterns. Findings are categorized by threat type (e.g., Trojan:EC2/BlackholeTraffic, Backdoor:EC2/C&CActivity) and severity, satisfying the requirement to detect and eradicate malicious code at system entry and exit points.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              },
+              {
+                "uuid": "58a2b3c4-d5e6-7890-abcd-ef0123456758",
+                "control-id": "si-4",
+                "description": "GuardDuty provides continuous system monitoring by detecting attacks and indicators of potential attacks across three data sources: CloudTrail management events (API-layer threats like credential misuse or logging tampering), VPC Flow Logs (network-layer threats like port scanning or data exfiltration), and DNS logs (domain-layer threats like queries to malware-associated domains). Findings are generated with severity ratings and detailed context, satisfying the requirement to monitor the system for attacks and unauthorized access.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              },
+              {
+                "uuid": "59a2b3c4-d5e6-7890-abcd-ef0123456759",
+                "control-id": "ir-4",
+                "description": "GuardDuty provides the detection component of incident handling by identifying security events that require response — such as compromised credentials, unauthorized API calls from known malicious IPs, or EC2 instances communicating with command-and-control infrastructure. GuardDuty findings published to EventBridge trigger automated containment workflows via Lambda, satisfying the detection and analysis phase of incident handling.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "60a2b3c4-d5e6-7890-abcd-ef0123456760",
+        "type": "service",
+        "title": "Amazon EventBridge",
+        "description": "Amazon EventBridge is a serverless event bus that routes events from AWS services, custom applications, and SaaS providers to target services based on rules, enabling event-driven automation and integration workflows.",
+        "control-implementations": [
+          {
+            "uuid": "61a2b3c4-d5e6-7890-abcd-ef0123456761",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "description": "NIST 800-53 Rev 5 controls implemented by Amazon EventBridge",
+            "implemented-requirements": [
+              {
+                "uuid": "62a2b3c4-d5e6-7890-abcd-ef0123456762",
+                "control-id": "ir-4",
+                "description": "EventBridge routes security findings from GuardDuty, Config, and Security Hub to automated response targets (Lambda functions, SNS topics, Step Functions) based on configurable event rules. Rules can filter by finding severity, type, or affected resource, enabling automated containment and eradication workflows — such as isolating a compromised instance or revoking compromised credentials — satisfying the requirement to implement an incident handling capability that includes containment, eradication, and recovery.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "63a2b3c4-d5e6-7890-abcd-ef0123456763",
+        "type": "service",
+        "title": "AWS Lambda",
+        "description": "AWS Lambda is a serverless compute service that executes code in response to events without provisioning or managing servers, commonly used in security automation workflows for incident response, remediation, and compliance enforcement.",
+        "control-implementations": [
+          {
+            "uuid": "64a2b3c4-d5e6-7890-abcd-ef0123456764",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "description": "NIST 800-53 Rev 5 controls implemented by AWS Lambda",
+            "implemented-requirements": [
+              {
+                "uuid": "65a2b3c4-d5e6-7890-abcd-ef0123456765",
+                "control-id": "ir-4",
+                "description": "Lambda functions execute automated incident response actions triggered by EventBridge rules — such as modifying security groups to isolate compromised EC2 instances, disabling compromised IAM access keys, or creating forensic snapshots of affected EBS volumes. This automated response capability satisfies the requirement for incident handling that includes containment, eradication, and recovery without requiring manual intervention.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "66a2b3c4-d5e6-7890-abcd-ef0123456766",
+        "type": "service",
+        "title": "Amazon SNS",
+        "description": "Amazon Simple Notification Service (SNS) is a managed publish-subscribe messaging service that delivers notifications to subscribing endpoints including email, SMS, HTTP/S webhooks, Lambda functions, and SQS queues.",
+        "control-implementations": [
+          {
+            "uuid": "67a2b3c4-d5e6-7890-abcd-ef0123456767",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "description": "NIST 800-53 Rev 5 controls implemented by Amazon SNS",
+            "implemented-requirements": [
+              {
+                "uuid": "68a2b3c4-d5e6-7890-abcd-ef0123456768",
+                "control-id": "ir-6",
+                "description": "SNS delivers incident notifications to designated personnel by publishing GuardDuty and Security Hub findings to SNS topics subscribed by security operations teams via email, SMS, or webhook integrations (Slack, PagerDuty). This automated notification pipeline satisfies the requirement to report suspected incidents to the organizational incident response capability within organization-defined time periods.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  },
+                  {
+                    "name": "cjis-delta",
+                    "value": "CJIS v6.0 Section 5.3 requires that security incidents involving CJI be reported to the CJIS Systems Officer (CSO) and the FBI CJIS Division. This is a specific reporting chain requirement not present in the FedRAMP High baseline, which only requires reporting to organization-defined authorities. SNS topic subscriptions must include the CSO notification endpoint for CJI-related findings."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "69a2b3c4-d5e6-7890-abcd-ef0123456769",
+        "type": "service",
+        "title": "Amazon CloudWatch",
+        "description": "Amazon CloudWatch monitors AWS resources and applications in real time, collecting metrics, logs, and events, and providing configurable alarms that trigger notifications or automated actions when thresholds are breached.",
+        "control-implementations": [
+          {
+            "uuid": "70a2b3c4-d5e6-7890-abcd-ef0123456770",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "description": "NIST 800-53 Rev 5 controls implemented by Amazon CloudWatch",
+            "implemented-requirements": [
+              {
+                "uuid": "71a2b3c4-d5e6-7890-abcd-ef0123456771",
+                "control-id": "si-4",
+                "description": "CloudWatch Alarms monitor operational and security metrics — such as unauthorized API call counts, console sign-in failures, IAM policy changes, and network traffic anomalies — and trigger SNS notifications when thresholds are breached. CloudWatch metric filters applied to CloudTrail log groups detect specific event patterns (e.g., root account usage, security group changes), satisfying the requirement to monitor the system and adjust monitoring levels based on changes in risk.",
                 "props": [
                   {
                     "name": "fedramp-high",
