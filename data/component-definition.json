@@ -3,8 +3,8 @@
     "uuid": "a1b2c3d4-5678-9abc-def0-123456789abc",
     "metadata": {
       "title": "NIST 800-53 Rev 5 to AWS Service Mapping",
-      "last-modified": "2026-03-19T00:00:00Z",
-      "version": "0.4.0",
+      "last-modified": "2026-03-21T00:00:00Z",
+      "version": "0.5.0",
       "oscal-version": "1.1.2"
     },
     "components": [
@@ -45,6 +45,17 @@
                 "uuid": "f6a7b8c9-abcd-ef01-2345-6789abcdef01",
                 "control-id": "au-12",
                 "description": "CloudTrail provides system-wide audit record generation capability. When configured as an organization trail via AWS Organizations, it generates audit records for all member accounts across all AWS regions, capturing both management events and data events. FedRAMP High requires multi-region coverage — a single-region trail does not satisfy this control.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              },
+              {
+                "uuid": "40a2b3c4-d5e6-7890-abcd-ef0123456740",
+                "control-id": "cm-3",
+                "description": "CloudTrail provides the audit trail component of configuration change control by recording who made each change, when, from which source IP, and what API action was called. Combined with AWS Config's before-and-after configuration snapshots, CloudTrail satisfies the requirement to document configuration change decisions and retain records of configuration-controlled changes.",
                 "props": [
                   {
                     "name": "fedramp-high",
@@ -460,6 +471,17 @@
                     "value": "true"
                   }
                 ]
+              },
+              {
+                "uuid": "41a2b3c4-d5e6-7890-abcd-ef0123456741",
+                "control-id": "cm-7",
+                "description": "VPC security groups and network ACLs enforce least functionality at the network layer by restricting which ports, protocols, and source/destination addresses are permitted. Security groups operate on a default-deny-inbound model — only explicitly allowed traffic reaches the resource. Combined with AWS Config Rules like restricted-ssh and restricted-common-ports, unauthorized port exposure is detected and flagged, satisfying the requirement to prohibit or restrict the use of specified functions, ports, protocols, and services.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
               }
             ]
           }
@@ -632,6 +654,91 @@
                 "uuid": "39a2b3c4-d5e6-7890-abcd-ef0123456739",
                 "control-id": "sc-28",
                 "description": "RDS encrypts data at rest for DB instances, automated backups, read replicas, and snapshots using AES-256 encryption with KMS-managed keys. Encryption must be enabled at instance creation and applies to the underlying storage, automated backups, and snapshots, satisfying the requirement to protect the confidentiality and integrity of information at rest.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "42a2b3c4-d5e6-7890-abcd-ef0123456742",
+        "type": "service",
+        "title": "AWS Config",
+        "description": "AWS Config continuously records the configuration state of AWS resources, evaluates configurations against desired settings using Config Rules, and maintains a configuration history and inventory for compliance auditing and change tracking.",
+        "control-implementations": [
+          {
+            "uuid": "43a2b3c4-d5e6-7890-abcd-ef0123456743",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "description": "NIST 800-53 Rev 5 controls implemented by AWS Config",
+            "implemented-requirements": [
+              {
+                "uuid": "44a2b3c4-d5e6-7890-abcd-ef0123456744",
+                "control-id": "cm-2",
+                "description": "AWS Config records the configuration state of AWS resources as configuration items, creating a point-in-time snapshot each time a resource is created, modified, or deleted. The configuration timeline provides a historical record of how each resource's configuration has changed over time, satisfying the requirement to develop, document, and maintain a current baseline configuration of the system.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              },
+              {
+                "uuid": "45a2b3c4-d5e6-7890-abcd-ef0123456745",
+                "control-id": "cm-3",
+                "description": "AWS Config captures the before-and-after configuration state of resources when changes occur, providing the 'what changed' component of configuration change control. Config delivers configuration change notifications via SNS, enabling automated review of changes. Combined with CloudTrail's record of who initiated each change, Config satisfies the requirement to determine, document, and review configuration-controlled changes.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              },
+              {
+                "uuid": "46a2b3c4-d5e6-7890-abcd-ef0123456746",
+                "control-id": "cm-6",
+                "description": "AWS Config Rules evaluate whether resource configurations comply with desired settings. AWS managed rules provide pre-built checks (s3-bucket-server-side-encryption-enabled, iam-password-policy, restricted-ssh), and custom rules use Lambda functions for organization-specific checks. Resources are marked COMPLIANT or NON_COMPLIANT continuously, and Config can trigger SSM Automation runbooks for automated remediation, satisfying the requirement to establish, implement, and monitor configuration settings.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              },
+              {
+                "uuid": "47a2b3c4-d5e6-7890-abcd-ef0123456747",
+                "control-id": "cm-8",
+                "description": "AWS Config automatically discovers and inventories AWS resources across supported resource types (EC2 instances, S3 buckets, IAM roles, security groups, and 380+ others). Config Advanced Queries enable SQL-like queries against the inventory (e.g., 'SELECT resourceId WHERE resourceType = AWS::EC2::Instance AND configuration.encrypted = false'). The resource inventory updates automatically as resources are created, modified, or deleted, satisfying the requirement to develop and document a system component inventory that accurately reflects the system.",
+                "props": [
+                  {
+                    "name": "fedramp-high",
+                    "value": "true"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "48a2b3c4-d5e6-7890-abcd-ef0123456748",
+        "type": "service",
+        "title": "AWS Systems Manager",
+        "description": "AWS Systems Manager (SSM) provides operational management of EC2 instances and on-premises servers, including inventory collection, patch management, parameter storage, and automation of administrative tasks through the SSM Agent.",
+        "control-implementations": [
+          {
+            "uuid": "49a2b3c4-d5e6-7890-abcd-ef0123456749",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "description": "NIST 800-53 Rev 5 controls implemented by AWS Systems Manager",
+            "implemented-requirements": [
+              {
+                "uuid": "50a2b3c4-d5e6-7890-abcd-ef0123456750",
+                "control-id": "cm-8",
+                "description": "SSM Inventory collects OS-level metadata from managed instances including installed applications, OS version, network configuration, Windows updates, and running services. This extends AWS Config's cloud-layer inventory with instance-layer detail that Config cannot see, satisfying the requirement for a component inventory at the level of granularity deemed necessary for tracking and reporting.",
                 "props": [
                   {
                     "name": "fedramp-high",
