@@ -1,3 +1,10 @@
+![License](https://img.shields.io/badge/License-MIT-green?style=flat)
+![AWS](https://img.shields.io/badge/AWS-Service%20Mapping-FF9900?style=flat&logo=amazonwebservices)
+![OSCAL](https://img.shields.io/badge/OSCAL-Component%20Definition-1c5b94?style=flat)
+![NIST 800-53](https://img.shields.io/badge/NIST-800--53%20Rev%205-004990?style=flat)
+![FedRAMP](https://img.shields.io/badge/FedRAMP-High%20Baseline-0071bc?style=flat)
+![CJIS](https://img.shields.io/badge/CJIS-Security%20Policy%20v6.0-cc0000?style=flat)
+
 # NIST 800-53 Rev 5 to AWS Service Mapping
 
 Maps NIST 800-53 Rev 5 security controls to AWS services that support their implementation, stored as an OSCAL Component Definition JSON file. A Python generator script renders the mapping as markdown with FedRAMP High baseline filtering and a CJIS v6.0 delta section highlighting where CJIS exceeds FedRAMP requirements. Built for GRC engineers, compliance analysts, and assessors working in FedRAMP High and CJIS v6.0 environments.
