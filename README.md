@@ -65,7 +65,7 @@ The OSCAL Component Definition format aligns with FedRAMP 20x compliance-as-code
 
 ## CJIS v6.0 Relevance
 
-CJIS v6.0 aligns with NIST 800-53 Rev 5 as of December 2024 and becomes the audit standard on April 1, 2026. This mapping identifies 5 controls where CJIS exceeds FedRAMP High: quarterly account reviews (AC-2), phishing-resistant AAL2 MFA (IA-2), 1-year audit log retention with weekly review (AU-6), agency-managed encryption keys (SC-28), and incident reporting to the CSO/FBI CJIS Division (IR-6).
+CJIS v6.0 (published Dec 27, 2024) aligns to NIST 800-53 Rev 5 and phases in rather than switching on a single date: v5.9.5 was the scored audit standard through March 31, 2026 and v6.0 is the default audit baseline from April 1, 2026, with modernized Priority 2-4 controls fully enforceable Oct 1, 2027 (timing varies by state CSA). This mapping identifies 5 controls where CJIS exceeds FedRAMP High: quarterly account reviews (AC-2), phishing-resistant AAL2 MFA (IA-2), 1-year audit log retention with weekly review (AU-6), agency-managed encryption keys (SC-28), and incident reporting to the CSO/FBI CJIS Division (IR-6).
 
 ## Sample Evidence Output
 
