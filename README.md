@@ -9,6 +9,21 @@
 
 Maps NIST 800-53 Rev 5 security controls to AWS services that support their implementation, stored as an OSCAL Component Definition JSON file. A Python generator script renders the mapping as markdown with FedRAMP High baseline filtering and a CJIS v6.0 delta section highlighting where CJIS exceeds FedRAMP requirements. Built for GRC engineers, compliance analysts, and assessors working in FedRAMP High and CJIS v6.0 environments.
 
+## Architecture Overview
+
+```mermaid
+graph LR
+    A["data/component-definition.json<br/>OSCAL Component Definition"] --> B["scripts/generate_mapping.py"]
+    B --> C["optional --fedramp-only<br/>filter fedramp-high props"]
+    B --> D["output/mapping.md<br/>NIST 800-53 → AWS table"]
+    C --> D
+    D --> E["CJIS v6.0 Delta Requirements<br/>where CJIS exceeds FedRAMP High"]
+```
+
+Editable Mermaid source (kept in sync with the fence above): [`docs/architecture.mmd`](docs/architecture.mmd).
+
+The OSCAL Component Definition at `data/component-definition.json` is the machine-readable mapping source (control implementations with AWS service props, including `fedramp-high` and `cjis-delta`). `scripts/generate_mapping.py` reads that JSON and writes `output/mapping.md`. Pass `--fedramp-only` to emit only FedRAMP High controls; the markdown adds a CJIS v6.0 delta section listing controls with a `cjis-delta` prop (under `--fedramp-only`, the delta section is likewise restricted to FedRAMP High controls).
+
 ## Compliance Controls Addressed
 
 | NIST 800-53 Rev 5 | FedRAMP High | CJIS v6.0 | Validation Method |
@@ -80,6 +95,8 @@ See the generated mapping: [`output/mapping.md`](output/mapping.md)
 │   └── generate_mapping.py         # Python generator (OSCAL → markdown)
 ├── output/
 │   └── mapping.md                  # Generated mapping document
+├── docs/
+│   └── architecture.mmd            # Mermaid source (sync with README fence)
 ├── CLAUDE.md
 ├── README.md
 └── LICENSE.txt
