@@ -1,0 +1,9 @@
+%% Editable Mermaid source for the README "Architecture Overview" section.
+%% Keep this file in sync with the inline ```mermaid fence in README.md.
+%% Diff-able source of truth for the architecture graph (no separate PNG export).
+graph LR
+    A["data/component-definition.json<br/>OSCAL Component Definition"] --> B["scripts/generate_mapping.py"]
+    B --> C["optional --fedramp-only<br/>filter fedramp-high props"]
+    B --> D["output/mapping.md<br/>NIST 800-53 → AWS table"]
+    C --> D
+    D --> E["CJIS v6.0 Delta Requirements<br/>where CJIS exceeds FedRAMP High"]
