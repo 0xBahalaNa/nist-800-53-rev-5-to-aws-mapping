@@ -89,7 +89,7 @@
                   },
                   {
                     "name": "cjis-delta",
-                    "value": "CJIS v6.0 requires accounts with access to CJI be reviewed at minimum quarterly. This exceeds the FedRAMP High baseline review frequency and requires documented evidence of each review cycle with explicit reauthorization or removal of access."
+                    "value": "CJIS v6.1 requires accounts with access to CJI be reviewed at minimum quarterly. This exceeds the FedRAMP High baseline review frequency and requires documented evidence of each review cycle with explicit reauthorization or removal of access."
                   }
                 ]
               },
@@ -126,7 +126,7 @@
                   },
                   {
                     "name": "cjis-delta",
-                    "value": "CJIS v6.0 requires AAL2 multi-factor authentication for all users accessing CJI. This exceeds the FedRAMP High baseline by mandating phishing-resistant authenticators (hardware tokens or push-based MFA) and prohibiting SMS-based OTP as a second factor for CJI systems."
+                    "value": "CJIS v6.1 requires AAL2 multi-factor authentication for all users accessing CJI. This exceeds the FedRAMP High baseline by mandating phishing-resistant authenticators (hardware tokens or push-based MFA) and prohibiting SMS-based OTP as a second factor for CJI systems."
                   }
                 ]
               },
@@ -204,7 +204,7 @@
                   },
                   {
                     "name": "cjis-delta",
-                    "value": "CJIS v6.0 requires AAL2 multi-factor authentication for all users accessing CJI. This exceeds the FedRAMP High baseline by mandating phishing-resistant authenticators (hardware tokens or push-based MFA) and prohibiting SMS-based OTP as a second factor for CJI systems."
+                    "value": "CJIS v6.1 requires AAL2 multi-factor authentication for all users accessing CJI. This exceeds the FedRAMP High baseline by mandating phishing-resistant authenticators (hardware tokens or push-based MFA) and prohibiting SMS-based OTP as a second factor for CJI systems."
                   }
                 ]
               },
@@ -349,7 +349,7 @@
                   },
                   {
                     "name": "cjis-delta",
-                    "value": "CJIS v6.0 Section 5.4 requires audit logs capturing CJI access be retained for a minimum of one year (365 days), reviewed at minimum weekly, and monitored using automated tools to flag suspicious activity. Organizations must assign personnel to review logs and demonstrate a documented review process, exceeding the FedRAMP High baseline review frequency."
+                    "value": "CJIS v6.1 (AU-6, AU-11) requires audit logs capturing CJI access be retained for a minimum of one year (365 days), reviewed at minimum weekly, and monitored using automated tools to flag suspicious activity. Organizations must assign personnel to review logs and demonstrate a documented review process, exceeding the FedRAMP High baseline review frequency."
                   }
                 ]
               }
@@ -416,7 +416,7 @@
                   },
                   {
                     "name": "cjis-delta",
-                    "value": "CJIS v6.0 requires agency-managed customer managed keys (CMK) for encrypting CJI at rest — AWS-managed keys do not satisfy this requirement. If AWS-managed keys are used, AWS personnel have theoretical access to decrypt CJI, which brings them into CJIS personnel security scope and requires fingerprint-based background checks for cloud provider staff. Agency-managed CMKs keep key material outside AWS control, removing cloud provider personnel from CJIS personnel security scope and making the deployment viable."
+                    "value": "CJIS v6.1 requires agency-managed customer managed keys (CMK) for encrypting CJI at rest — AWS-managed keys do not satisfy this requirement. If AWS-managed keys are used, AWS personnel have theoretical access to decrypt CJI, which brings them into CJIS personnel security scope and requires fingerprint-based background checks for cloud provider staff. Agency-managed CMKs keep key material outside AWS control, removing cloud provider personnel from CJIS personnel security scope and making the deployment viable."
                   }
                 ]
               }
@@ -916,7 +916,7 @@
                   },
                   {
                     "name": "cjis-delta",
-                    "value": "CJIS v6.0 Section 5.3 requires that security incidents involving CJI be reported to the CJIS Systems Officer (CSO) and the FBI CJIS Division. This is a specific reporting chain requirement not present in the FedRAMP High baseline, which only requires reporting to organization-defined authorities. SNS topic subscriptions must include the CSO notification endpoint for CJI-related findings."
+                    "value": "CJIS v6.1 (IR-6) requires that security incidents involving CJI be reported to the CJIS Systems Officer (CSO) and the FBI CJIS Division. This is a specific reporting chain requirement not present in the FedRAMP High baseline, which only requires reporting to organization-defined authorities. SNS topic subscriptions must include the CSO notification endpoint for CJI-related findings."
                   }
                 ]
               }

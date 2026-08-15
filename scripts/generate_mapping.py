@@ -145,7 +145,7 @@ def write_markdown(mappings, output_path, fedramp_only=False):
                     f"|\n"
                 )
 
-            # CJIS v6.0 Delta Requirements section — only controls where CJIS
+            # CJIS v6.1 Delta Requirements section — only controls where CJIS
             # exceeds the FedRAMP High baseline. Filtered using a list
             # comprehension that checks for non-empty cjis_delta strings
             # (PCC3e Ch 4 — an empty string is falsy in Python, so
@@ -153,8 +153,8 @@ def write_markdown(mappings, output_path, fedramp_only=False):
             cjis_deltas = [m for m in mappings if m["cjis_delta"]]
 
             if cjis_deltas:
-                f.write("\n## CJIS v6.0 Delta Requirements\n\n")
-                f.write("Controls where CJIS v6.0 exceeds the FedRAMP High baseline.\n\n")
+                f.write("\n## CJIS v6.1 Delta Requirements\n\n")
+                f.write("Controls where CJIS v6.1 exceeds the FedRAMP High baseline.\n\n")
                 f.write("| Control ID | AWS Service | CJIS Additional Requirement |\n")
                 f.write("|------------|-------------|-----------------------------|\n")
 
