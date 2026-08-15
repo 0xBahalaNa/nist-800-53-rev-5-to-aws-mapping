@@ -44,7 +44,7 @@
               {
                 "uuid": "f6a7b8c9-abcd-ef01-2345-6789abcdef01",
                 "control-id": "au-12",
-                "description": "CloudTrail provides system-wide audit record generation capability. When configured as an organization trail via AWS Organizations, it generates audit records for all member accounts across all AWS regions, capturing both management events and data events. FedRAMP High requires multi-region coverage — a single-region trail does not satisfy this control.",
+                "description": "CloudTrail provides system-wide audit record generation capability. When configured as an organization trail via AWS Organizations, it generates audit records for all member accounts across all AWS regions, capturing both management events and data events. FedRAMP High requires multi-region coverage \u2014 a single-region trail does not satisfy this control.",
                 "props": [
                   {
                     "name": "fedramp-high",
@@ -89,7 +89,7 @@
                   },
                   {
                     "name": "cjis-delta",
-                    "value": "CJIS v6.1 requires accounts with access to CJI be reviewed at minimum quarterly. This exceeds the FedRAMP High baseline review frequency and requires documented evidence of each review cycle with explicit reauthorization or removal of access."
+                    "value": "CJIS v6.1 requires accounts with access to CJI be reviewed at least annually (AC-2(j)). FedRAMP High's own ac-02_odp.10 review-frequency parameter is organization-defined and typically set to annual as well, so the CJIS-specific delta is need-to-know granularity and prompt (within-one-day, AC-2(h)) deprovisioning on role change or separation, not a shorter review cycle."
                   }
                 ]
               },
@@ -126,7 +126,7 @@
                   },
                   {
                     "name": "cjis-delta",
-                    "value": "CJIS v6.1 requires AAL2 multi-factor authentication for all users accessing CJI. This exceeds the FedRAMP High baseline by mandating phishing-resistant authenticators (hardware tokens or push-based MFA) and prohibiting SMS-based OTP as a second factor for CJI systems."
+                    "value": "CJIS v6.1 requires AAL2 multi-factor authentication for all users accessing CJI, exceeding the FedRAMP High baseline. AAL2 is the floor (MFA + replay-resistance); phishing-resistant authenticators (FIDO2/WebAuthn, PIV/CAC) are CJIS-preferred but not a strict AAL2 requirement \u2014 software OTP still clears the AAL2 bar."
                   }
                 ]
               },
@@ -204,7 +204,7 @@
                   },
                   {
                     "name": "cjis-delta",
-                    "value": "CJIS v6.1 requires AAL2 multi-factor authentication for all users accessing CJI. This exceeds the FedRAMP High baseline by mandating phishing-resistant authenticators (hardware tokens or push-based MFA) and prohibiting SMS-based OTP as a second factor for CJI systems."
+                    "value": "CJIS v6.1 requires AAL2 multi-factor authentication for all users accessing CJI, exceeding the FedRAMP High baseline. AAL2 is the floor (MFA + replay-resistance); phishing-resistant authenticators (FIDO2/WebAuthn, PIV/CAC) are CJIS-preferred but not a strict AAL2 requirement \u2014 software OTP still clears the AAL2 bar."
                   }
                 ]
               },
@@ -315,7 +315,7 @@
               {
                 "uuid": "03a2b3c4-d5e6-7890-abcd-ef0123456703",
                 "control-id": "au-2",
-                "description": "VPC Flow Logs capture network-level events that CloudTrail does not — accepted and rejected traffic at the ENI, subnet, or VPC level. This supplements CloudTrail's API-layer audit logging with network-layer event logging, satisfying the requirement to identify events the system is capable of auditing across both application and network tiers.",
+                "description": "VPC Flow Logs capture network-level events that CloudTrail does not \u2014 accepted and rejected traffic at the ENI, subnet, or VPC level. This supplements CloudTrail's API-layer audit logging with network-layer event logging, satisfying the requirement to identify events the system is capable of auditing across both application and network tiers.",
                 "props": [
                   {
                     "name": "fedramp-high",
@@ -416,7 +416,7 @@
                   },
                   {
                     "name": "cjis-delta",
-                    "value": "CJIS v6.1 requires agency-managed customer managed keys (CMK) for encrypting CJI at rest — AWS-managed keys do not satisfy this requirement. If AWS-managed keys are used, AWS personnel have theoretical access to decrypt CJI, which brings them into CJIS personnel security scope and requires fingerprint-based background checks for cloud provider staff. Agency-managed CMKs keep key material outside AWS control, removing cloud provider personnel from CJIS personnel security scope and making the deployment viable."
+                    "value": "CJIS v6.1 requires agency-managed customer managed keys (CMK) for encrypting CJI at rest \u2014 AWS-managed keys do not satisfy this requirement. If AWS-managed keys are used, AWS personnel have theoretical access to decrypt CJI, which brings them into CJIS personnel security scope and requires fingerprint-based background checks for cloud provider staff. Agency-managed CMKs keep key material outside AWS control, removing cloud provider personnel from CJIS personnel security scope and making the deployment viable."
                   }
                 ]
               }
@@ -497,7 +497,7 @@
               {
                 "uuid": "41a2b3c4-d5e6-7890-abcd-ef0123456741",
                 "control-id": "cm-7",
-                "description": "VPC security groups and network ACLs enforce least functionality at the network layer by restricting which ports, protocols, and source/destination addresses are permitted. Security groups operate on a default-deny-inbound model — only explicitly allowed traffic reaches the resource. Combined with AWS Config Rules like restricted-ssh and restricted-common-ports, unauthorized port exposure is detected and flagged, satisfying the requirement to prohibit or restrict the use of specified functions, ports, protocols, and services.",
+                "description": "VPC security groups and network ACLs enforce least functionality at the network layer by restricting which ports, protocols, and source/destination addresses are permitted. Security groups operate on a default-deny-inbound model \u2014 only explicitly allowed traffic reaches the resource. Combined with AWS Config Rules like restricted-ssh and restricted-common-ports, unauthorized port exposure is detected and flagged, satisfying the requirement to prohibit or restrict the use of specified functions, ports, protocols, and services.",
                 "props": [
                   {
                     "name": "fedramp-high",
@@ -623,7 +623,7 @@
               {
                 "uuid": "33a2b3c4-d5e6-7890-abcd-ef0123456733",
                 "control-id": "sc-28.1",
-                "description": "KMS customer managed keys (CMKs) provide the cryptographic mechanism for SC-28(1), enabling organizations to implement encryption of information at rest with organization-controlled key material. CMKs integrate with S3, EBS, RDS, and other AWS storage services to encrypt data with keys that the organization creates, rotates, disables, and deletes — not AWS. Required at FedRAMP High baseline.",
+                "description": "KMS customer managed keys (CMKs) provide the cryptographic mechanism for SC-28(1), enabling organizations to implement encryption of information at rest with organization-controlled key material. CMKs integrate with S3, EBS, RDS, and other AWS storage services to encrypt data with keys that the organization creates, rotates, disables, and deletes \u2014 not AWS. Required at FedRAMP High baseline.",
                 "props": [
                   {
                     "name": "fedramp-high",
@@ -745,7 +745,7 @@
               {
                 "uuid": "51a2b3c4-d5e6-7890-abcd-ef0123456751",
                 "control-id": "si-7",
-                "description": "AWS Config Rules detect unauthorized changes to resource configurations by continuously evaluating resource state against approved baselines. When a resource's configuration deviates from the approved state — such as an AMI swap on an EC2 instance, a Lambda function code hash change, or an unauthorized software package appearing in SSM Inventory — Config marks the resource NON_COMPLIANT and can trigger automated alerts, satisfying the requirement to employ integrity verification tools to detect unauthorized changes.",
+                "description": "AWS Config Rules detect unauthorized changes to resource configurations by continuously evaluating resource state against approved baselines. When a resource's configuration deviates from the approved state \u2014 such as an AMI swap on an EC2 instance, a Lambda function code hash change, or an unauthorized software package appearing in SSM Inventory \u2014 Config marks the resource NON_COMPLIANT and can trigger automated alerts, satisfying the requirement to employ integrity verification tools to detect unauthorized changes.",
                 "props": [
                   {
                     "name": "fedramp-high",
@@ -808,7 +808,7 @@
               {
                 "uuid": "57a2b3c4-d5e6-7890-abcd-ef0123456757",
                 "control-id": "si-3",
-                "description": "GuardDuty detects malicious code indicators by analyzing CloudTrail events, VPC Flow Logs, and DNS query logs for patterns associated with malware activity — including communication with known command-and-control servers, crypto-mining traffic, and data exfiltration patterns. Findings are categorized by threat type (e.g., Trojan:EC2/BlackholeTraffic, Backdoor:EC2/C&CActivity) and severity, satisfying the requirement to detect and eradicate malicious code at system entry and exit points.",
+                "description": "GuardDuty detects malicious code indicators by analyzing CloudTrail events, VPC Flow Logs, and DNS query logs for patterns associated with malware activity \u2014 including communication with known command-and-control servers, crypto-mining traffic, and data exfiltration patterns. Findings are categorized by threat type (e.g., Trojan:EC2/BlackholeTraffic, Backdoor:EC2/C&CActivity) and severity, satisfying the requirement to detect and eradicate malicious code at system entry and exit points.",
                 "props": [
                   {
                     "name": "fedramp-high",
@@ -830,7 +830,7 @@
               {
                 "uuid": "59a2b3c4-d5e6-7890-abcd-ef0123456759",
                 "control-id": "ir-4",
-                "description": "GuardDuty provides the detection component of incident handling by identifying security events that require response — such as compromised credentials, unauthorized API calls from known malicious IPs, or EC2 instances communicating with command-and-control infrastructure. GuardDuty findings published to EventBridge trigger automated containment workflows via Lambda, satisfying the detection and analysis phase of incident handling.",
+                "description": "GuardDuty provides the detection component of incident handling by identifying security events that require response \u2014 such as compromised credentials, unauthorized API calls from known malicious IPs, or EC2 instances communicating with command-and-control infrastructure. GuardDuty findings published to EventBridge trigger automated containment workflows via Lambda, satisfying the detection and analysis phase of incident handling.",
                 "props": [
                   {
                     "name": "fedramp-high",
@@ -856,7 +856,7 @@
               {
                 "uuid": "62a2b3c4-d5e6-7890-abcd-ef0123456762",
                 "control-id": "ir-4",
-                "description": "EventBridge routes security findings from GuardDuty, Config, and Security Hub to automated response targets (Lambda functions, SNS topics, Step Functions) based on configurable event rules. Rules can filter by finding severity, type, or affected resource, enabling automated containment and eradication workflows — such as isolating a compromised instance or revoking compromised credentials — satisfying the requirement to implement an incident handling capability that includes containment, eradication, and recovery.",
+                "description": "EventBridge routes security findings from GuardDuty, Config, and Security Hub to automated response targets (Lambda functions, SNS topics, Step Functions) based on configurable event rules. Rules can filter by finding severity, type, or affected resource, enabling automated containment and eradication workflows \u2014 such as isolating a compromised instance or revoking compromised credentials \u2014 satisfying the requirement to implement an incident handling capability that includes containment, eradication, and recovery.",
                 "props": [
                   {
                     "name": "fedramp-high",
@@ -882,7 +882,7 @@
               {
                 "uuid": "65a2b3c4-d5e6-7890-abcd-ef0123456765",
                 "control-id": "ir-4",
-                "description": "Lambda functions execute automated incident response actions triggered by EventBridge rules — such as modifying security groups to isolate compromised EC2 instances, disabling compromised IAM access keys, or creating forensic snapshots of affected EBS volumes. This automated response capability satisfies the requirement for incident handling that includes containment, eradication, and recovery without requiring manual intervention.",
+                "description": "Lambda functions execute automated incident response actions triggered by EventBridge rules \u2014 such as modifying security groups to isolate compromised EC2 instances, disabling compromised IAM access keys, or creating forensic snapshots of affected EBS volumes. This automated response capability satisfies the requirement for incident handling that includes containment, eradication, and recovery without requiring manual intervention.",
                 "props": [
                   {
                     "name": "fedramp-high",
@@ -938,7 +938,7 @@
               {
                 "uuid": "71a2b3c4-d5e6-7890-abcd-ef0123456771",
                 "control-id": "si-4",
-                "description": "CloudWatch Alarms monitor operational and security metrics — such as unauthorized API call counts, console sign-in failures, IAM policy changes, and network traffic anomalies — and trigger SNS notifications when thresholds are breached. CloudWatch metric filters applied to CloudTrail log groups detect specific event patterns (e.g., root account usage, security group changes), satisfying the requirement to monitor the system and adjust monitoring levels based on changes in risk.",
+                "description": "CloudWatch Alarms monitor operational and security metrics \u2014 such as unauthorized API call counts, console sign-in failures, IAM policy changes, and network traffic anomalies \u2014 and trigger SNS notifications when thresholds are breached. CloudWatch metric filters applied to CloudTrail log groups detect specific event patterns (e.g., root account usage, security group changes), satisfying the requirement to monitor the system and adjust monitoring levels based on changes in risk.",
                 "props": [
                   {
                     "name": "fedramp-high",
