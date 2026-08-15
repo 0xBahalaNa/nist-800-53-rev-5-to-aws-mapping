@@ -28,7 +28,7 @@ The OSCAL Component Definition at `data/component-definition.json` is the machin
 
 | NIST 800-53 Rev 5 | FedRAMP High | CJIS v6.1 | Validation Method |
 |--------------------|:------------:|:---------:|-------------------|
-| AC-2 Account Management | Yes | Quarterly CJI access reviews | OSCAL prop mapping |
+| AC-2 Account Management | Yes | Need-to-know granularity + 1-day deprovisioning | OSCAL prop mapping |
 | AC-3 Access Enforcement | Yes | n/a | OSCAL prop mapping |
 | AC-6 Least Privilege | Yes | n/a | OSCAL prop mapping |
 | AC-17 Remote Access | Yes | n/a | OSCAL prop mapping |
@@ -80,7 +80,7 @@ The OSCAL Component Definition format aligns with FedRAMP 20x compliance-as-code
 
 ## CJIS v6.1 Relevance
 
-CJIS Security Policy v6.1 (released June 25, 2026) is the current policy, aligned with NIST 800-53 Rev 5. v6.x has been the default audit baseline since April 1, 2026 (v5.9.5 sunset March 31, 2026); modernized Priority 2-4 controls are fully enforceable Oct 1, 2027 (timing varies by state CSA). This mapping identifies 5 controls where CJIS exceeds FedRAMP High: quarterly account reviews (AC-2), phishing-resistant AAL2 MFA (IA-2), 1-year audit log retention with weekly review (AU-6), agency-managed encryption keys (SC-28), and incident reporting to the CSO/FBI CJIS Division (IR-6).
+CJIS Security Policy v6.1 (released June 25, 2026) is the current policy, aligned with NIST 800-53 Rev 5. v6.x has been the default audit baseline since April 1, 2026 (v5.9.5 sunset March 31, 2026); modernized Priority 2-4 controls are fully enforceable Oct 1, 2027 (timing varies by state CSA). This mapping identifies 5 controls where CJIS exceeds FedRAMP High: need-to-know granularity and prompt (within-one-day, AC-2(h)) deprovisioning on role change or separation (AC-2), AAL2 MFA (IA-2), 1-year audit log retention with weekly review (AU-6), agency-managed encryption keys (SC-28), and incident reporting to the CSO/FBI CJIS Division (IR-6). AC-2's review cadence is annual (AC-2(j) is unambiguous) — FedRAMP High's own ac-02_odp.10 is an organization-defined parameter typically set to annual as well, so the CJIS delta is deprovisioning speed and need-to-know granularity, not review frequency.
 
 ## Sample Evidence Output
 
