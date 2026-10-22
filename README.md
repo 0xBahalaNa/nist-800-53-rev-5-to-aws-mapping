@@ -43,7 +43,7 @@ The OSCAL Component Definition at `data/component-definition.json` is the machin
 | CM-6 Configuration Settings | Yes | n/a | OSCAL prop mapping |
 | CM-7 Least Functionality | Yes | n/a | OSCAL prop mapping |
 | CM-8 System Component Inventory | Yes | n/a | OSCAL prop mapping |
-| IA-2 Identification & Authentication | Yes | AAL2 phishing-resistant MFA | OSCAL prop mapping |
+| IA-2 Identification & Authentication | Yes | AAL2 (replay-resistant; an authenticator app meets it); phishing-resistant authenticators recommended, not required | OSCAL prop mapping |
 | IA-5 Authenticator Management | Yes | n/a | OSCAL prop mapping |
 | IA-8 Non-Organizational Users | Yes | n/a | OSCAL prop mapping |
 | IR-4 Incident Handling | Yes | n/a | OSCAL prop mapping |
