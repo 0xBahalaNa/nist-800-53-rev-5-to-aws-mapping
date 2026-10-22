@@ -126,7 +126,7 @@
                   },
                   {
                     "name": "cjis-delta",
-                    "value": "CJIS v6.1 requires AAL2 multi-factor authentication for all users accessing CJI, exceeding the FedRAMP High baseline. AAL2 is the floor (MFA + replay-resistance); phishing-resistant authenticators (FIDO2/WebAuthn, PIV/CAC) are CJIS-preferred but not a strict AAL2 requirement \u2014 software OTP still clears the AAL2 bar."
+                    "value": "CJIS v6.1 requires AAL2 multi-factor authentication for all users accessing CJI, exceeding the FedRAMP High baseline. AAL2 is replay-resistant, and an authenticator app meets it. Phishing-resistant authenticators (FIDO2/WebAuthn, PIV/CAC) are recommended, not required."
                   }
                 ]
               },
@@ -204,7 +204,7 @@
                   },
                   {
                     "name": "cjis-delta",
-                    "value": "CJIS v6.1 requires AAL2 multi-factor authentication for all users accessing CJI, exceeding the FedRAMP High baseline. AAL2 is the floor (MFA + replay-resistance); phishing-resistant authenticators (FIDO2/WebAuthn, PIV/CAC) are CJIS-preferred but not a strict AAL2 requirement \u2014 software OTP still clears the AAL2 bar."
+                    "value": "CJIS v6.1 requires AAL2 multi-factor authentication for all users accessing CJI, exceeding the FedRAMP High baseline. AAL2 is replay-resistant, and an authenticator app meets it. Phishing-resistant authenticators (FIDO2/WebAuthn, PIV/CAC) are recommended, not required."
                   }
                 ]
               },
